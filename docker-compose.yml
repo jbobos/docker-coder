@@ -1,0 +1,24 @@
+# Coder in Docker
+# https://hub.docker.com/r/codercom/code-server
+# https://github.com/cdr/code-server/blob/master/Dockerfile
+#
+version: '3.1'
+services:
+  coder:
+    image: codercom/code-server:1.1156-vsc1.33.1
+    container_name: coder
+    command: --allow-http
+    networks:
+    - net_coder
+    ports:
+    - 8443:8443           # access vscode
+    - 8444-8999:8444-8999 # reserved for your projects
+    volumes:
+    - vol_coder:/home/coder/project
+
+networks:
+  net_coder:
+
+volumes:
+  vol_coder:
+
